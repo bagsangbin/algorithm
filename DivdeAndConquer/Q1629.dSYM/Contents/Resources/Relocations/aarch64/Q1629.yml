@@ -1,0 +1,8 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/mac/algorithm/DivdeAndConquer/Q1629'
+relocations:
+  - { offset: 0x26, size: 0x8, addend: 0x0, symName: __Z4poweii, symObjAddr: 0x0, symBinAddr: 0x100003EC8, symSize: 0x6C }
+  - { offset: 0x33, size: 0x8, addend: 0x0, symName: __Z4poweii, symObjAddr: 0x0, symBinAddr: 0x100003EC8, symSize: 0x6C }
+  - { offset: 0x6D, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x6C, symBinAddr: 0x100003F34, symSize: 0x5C }
+...
