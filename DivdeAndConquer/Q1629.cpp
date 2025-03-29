@@ -3,16 +3,16 @@
 
 using namespace std;
 
-long long powe(int a, int b, int c){
+int powe(int a, int b, int c){
 
     if(b == 0 ) return 1;
 
-    long long half = powe(a,b/2,c);
-    half = (half * half) % c;
+    long long temp = powe(a,b/2, c);
 
-    if(b % 2 == 1) half = (half * a) % c;
+    temp = (temp * temp) % c;
+    if(b % 2 == 1) temp = temp * a % c;
 
-    return half;
+    return temp; 
 }
 
 
