@@ -23,47 +23,6 @@ void swap(int &a, int &b){
     b = temp;
 }
 
-// void partition(vector<int> &v, int start, int end, int &p){
-//     int low, high;
-//     high = end;
-//     low = start + 1;
-//     p = v[start];
-
-//     while(low <= high){
-        
-//         if(v[low] < p){
-//             high--;
-//             if(v[high] > p) swap(v[low], v[high]);
-//         }
-
-//         else low++;
-
-//     }
-//     swap(v[start], v[high]);
-// }
-
-// void partition(vector<int> &v, int start, int end, int &p){
-//     int low = start + 1;
-//     int high = end;
-//     p = v[start]; // 피벗값
-
-//     while(high > low){
-//         if(v[low] < p){
-//             if(v[high] > p){
-//                 swap(v[low], v[high]);
-//             }
-//             else{
-//                 high--;
-//             }
-//         }
-//         else{
-//             low++;
-//         }
-//     }
-//     swap(v[start], v[high]);
-//     p = high; // 피벗값의 위치
-// }
-
 void partition(vector<int> &v, int start, int end, int &p){
     int pivot = v[start]; // 피벗값으로 첫 번째 요소 선택
     int i = start + 1;

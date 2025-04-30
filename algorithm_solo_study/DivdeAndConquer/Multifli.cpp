@@ -32,7 +32,7 @@ large_integer prod2(large_integer u, large_integer v) {
 }
 
 int main() {
-    large_integer num1 = 123456, num2 = 44002;
+    large_integer num1 = 1253, num2 = 23103;
 
     cout << "곱셈 결과: " << prod2(num1, num2) << endl;
 

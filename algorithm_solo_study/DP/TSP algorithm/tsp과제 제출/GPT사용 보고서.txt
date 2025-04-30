@@ -1,0 +1,64 @@
+==== GPT 사용 보고서 ====
+1.질문: Mac 환경에서 gcc를 이용하여 C++ 실행 파일을 만드는 방법
+
+답변:Mac의 터미널에서 아래 명령어를 사용하여 실행 파일을 생성할 수 있다.
+g++ -std=c++17 main.cpp -o hello <<
+이후 실행은 이렇게
+./hello hello.txt
+
+2.질문: TSP 문제에서 비트마스킹을 사용하지 않고 set을 이용하여 부분집합을 구하는 방법
+
+답변:
+set을 이용하여 powerset(부분집합의 집합)을 구하는 방법은 다음과 같다.
+
+코드:
+vector<set> allSubsets;
+allSubsets.push_back(set()); // 공집합부터 시작
+
+for (const auto& vertex : V) {
+    int currentSize = allSubsets.size();
+    for (int i = 0; i < currentSize; i++) {
+        set<int> newSet = allSubsets[i];
+        newSet.insert(vertex.second);
+        allSubsets.push_back(newSet);
+    }
+}
+
+위 코드는 기존의 모든 부분집합 each에 대해 정점 하나를 추가한 새로운 부분집합을 생성하는 방식으로 모든 조합을 만든다.
+이 방식은 set의 삽입/삭제 연산을 이용하므로 직관적이고 이해하기 쉬운 반면, 비트마스킹보다 성능은 떨어질 수 있다.
+
+3.	질문:
+수식 D[1][V - {startNode}] = min(W[1][j] + D[j][V - {v_1, v_j}])을 코드로 구현하는 방법
+
+답변:
+아래 코드는 위의 수식을 그대로 구현한 부분이다.
+
+코드:
+int fullSetIdx = subsetToIndex[allVerticesExceptStart];
+D[startNode.second][fullSetIdx] = INT_MAX;
+
+for (int j = 0; j < n; j++) {
+    if (j != startNode.second) {
+        set<int> V_minus_1_j = allVerticesExceptStart;
+        V_minus_1_j.erase(j);
+
+        int submaskIdx = subsetToIndex[V_minus_1_j];
+        if (W[startNode.second][j] != INT_MAX && D[j][submaskIdx] != INT_MAX) {
+            int newDist = W[startNode.second][j] + D[j][submaskIdx];
+            if (newDist < D[startNode.second][fullSetIdx]) {
+                D[startNode.second][fullSetIdx] = newDist;
+                pathNext[startNode.second][fullSetIdx] = j;
+            }
+        }
+    }
+}
+
+설명:
+	•	V_minus_1_j는 V - {startNode, j} 를 의미하며, set에서 j를 제거하여 구현한다.
+	•	D[j][submaskIdx]는 j에서 남은 집합을 돌고 돌아오는 비용.
+	•	W[start][j]는 start에서 j로 가는 비용.
+	•	두 값을 더해 최소값을 갱신하며, 경로 재구성 정보를 pathNext에 저장한다.
+
+GPT를 사용하여 비트마스킹이 아닌 set자료구조를 이용하여 부분집합을 표현했으며 mac환경에서의 터미널 기반 컴파일을 수행하였고
+psudo code의 이해가 부족한 부분을 보충함.
+
