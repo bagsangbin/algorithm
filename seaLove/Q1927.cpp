@@ -91,8 +91,8 @@ class heap{
 
 int main(){
     cin.tie(0);
-
     ios::sync_with_stdio(0);
+    
     heap h;
     int n, x;
     cin>>n;
